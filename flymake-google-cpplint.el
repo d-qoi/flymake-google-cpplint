@@ -189,7 +189,7 @@ Copied mostly from https://www.gnu.org/software/emacs/manual/html_node/flymake/A
   ) ;; end of defun.
 
 ;;;###autoload
-(defun cpplint-hook-flymake-backend ()
+(defun cpplint-hook-flymake-diag-function ()
   "Adds cpplint diagnostic function to flymake-diagnostic-functions list.
 Add this hook to eglot-managed-mode-hook if eglot is enabled for c/c++ buffers.
 Add this to prog-mode-hook or any of the c-common-mode derivitive hooks otherwise."
