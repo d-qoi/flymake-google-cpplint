@@ -90,16 +90,7 @@ By default, the location of the `cpplint.py` command is searched.
 
 ```lisp
 (custom-set-variables
- '(flymake-google-cpplint-command "/path/to/cpplint.py"))
-```
-
-## Where to create temporary copy
-
-One of 'tempdir or 'inplace (default).
-
-```lisp
-(custom-set-variables
- '(flymake-google-cpplint-location 'tempdir))
+ '(cpplint-executable "/path/to/cpplint"))
 ```
 
 # Notes
