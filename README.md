@@ -33,7 +33,27 @@ Example:
 $ wget http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
 $ sudo mv cpplint.py /usr/local/bin/cpplint.py
 $ sudo chmod 755 /usr/local/bin/cpplint.py
+
+# Or use pipx and make sure ~/.bin is in your path, or pip/pipx is installing to a location on the path.
+$ pipx install cpplint
 ```
+
+# Using use-package and straight:
+
+``` lisp
+(use-package flymake-google-cpplint
+  :if (executable-find "cpplint")
+  :straight (:host github :repo "d-qoi/flymake-google-cpplint")
+  ;; For eglot managed buffers
+  :hook (eglot-managed-mode . cpplint-hook-flymake-backend)
+  ;; For all c/c++ buffers listed in cpplint-active-modes
+  :hook (prog-mode . cpplint-hook-flymake-backend)
+  :custom
+  (cpplint-verbose 3)
+  (cpplint-linelength 120))
+```
+
+# Manual Setup
 
 ## Add to load-path
 
@@ -49,15 +69,15 @@ If not, also add to your config
 
 ```lisp
 (require 'flymake-google-cpplint)
-(add-hook 'c++-mode-hook 'flymake-google-cpplint-load)
+(add-hook 'c++-mode-hook 'cpplint-hook-flymake-diag-function)
 ```
 
 ## Configure for cpplint.py
 
 ```lisp
 (custom-set-variables
- '(flymake-google-cpplint-verbose "3")
- '(flymake-google-cpplint-linelength "120")
+ '(cpplint-verbose 3)
+ '(cpplint-linelength 120)
  ...
  )
 ```
